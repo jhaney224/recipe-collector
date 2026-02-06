@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/* Base Styles */
+:root {
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --primary-light: #60a5fa;
+  --secondary: #8b5cf6;
+  --success: #10b981;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-600: #4b5563;
+  --gray-700: #374151;
+  --gray-800: #1f2937;
+  --gray-900: #111827;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  @apply bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 min-h-screen;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Form Elements */
+input, label {
+  display: block;
+}
+
+input:not([type="range"]), textarea, select {
+  @apply w-full px-4 py-2.5 border border-gray-300 rounded-lg mb-3 transition-all duration-200;
+  @apply focus:ring-2 focus:ring-blue-500 focus:border-blue-500 focus:outline-none;
+  @apply hover:border-gray-400;
+}
+
+input:not([type="range"]):focus, textarea:focus, select:focus {
+  @apply shadow-md;
+}
+
+textarea {
+  @apply resize-y min-h-[100px];
+}
+
+label {
+  @apply font-semibold text-gray-700 mb-1.5 text-sm;
+}
+
+/* Buttons */
+button {
+  @apply px-4 py-2.5 bg-blue-600 text-white rounded-lg font-medium;
+  @apply transition-all duration-200 shadow-sm;
+  @apply hover:bg-blue-700 hover:shadow-md;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  @apply active:scale-95;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+button.secondary {
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+}
+
+button.danger {
+  @apply bg-red-500 hover:bg-red-600 focus:ring-red-500;
+}
+
+button.success {
+  @apply bg-green-500 hover:bg-green-600 focus:ring-green-500;
+}
+
+button.small {
+  @apply px-3 py-1.5 text-sm;
+}
+
+/* Range Input */
+input[type="range"] {
+  @apply w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer;
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  @apply appearance-none w-5 h-5 bg-blue-600 rounded-full cursor-pointer;
+  @apply hover:bg-blue-700 transition-colors;
+}
+
+input[type="range"]::-moz-range-thumb {
+  @apply w-5 h-5 bg-blue-600 rounded-full cursor-pointer border-0;
+  @apply hover:bg-blue-700 transition-colors;
+}
+
+/* Modal Transitions */
+.modal-enter-active, .modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from, .modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-active .modal-content,
+.modal-leave-active .modal-content {
+  transition: transform 0.3s ease;
+}
+
+.modal-enter-from .modal-content,
+.modal-leave-to .modal-content {
+  transform: scale(0.95) translateY(-20px);
+}
+
+/* Card Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* Focus Visible for Accessibility */
+*:focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
+
+/* Skip to main content link for screen readers */
+.skip-link {
+  @apply absolute -top-10 left-0 bg-blue-600 text-white px-4 py-2 rounded;
+  @apply focus:top-4 focus:left-4 z-50;
+}
+
+/* Loading Spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  @apply inline-block w-5 h-5 border-2 border-white border-t-transparent rounded-full;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Responsive utilities */
+@media (max-width: 640px) {
+  button {
+    @apply w-full;
+  }
+  
+  button.inline-mobile {
+    @apply w-auto;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
